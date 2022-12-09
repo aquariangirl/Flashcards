@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}All of Categories{% endblock %}
+
+{% block body %}
+
+<h1>Here are all of the categories of flashcards. Select one to view its list of flashcards.</h1> 
+<ul>
+    {% for category in categories %}
+    <li><a href="/categories/{{ Category.category_id }}">{{ Category.category_name }}</a> </li>
+    {% endfor %}
+</ul>
+{% endblock %}

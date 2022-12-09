@@ -1,2 +1,3 @@
-*.py
+.py[cod]
 env
+secrets.sh

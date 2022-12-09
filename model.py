@@ -4,71 +4,66 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class User(db.model):
-     """User Class"""
+
+class User(db.Model):
+    """User Class"""
 
     __tablename__ = "users"
-    user_id = db.Column(db.Integer,
-                        autoincrement= True
-                        primary_key= True)
-    username = db.Column(db.String VARCHAR(12), nullable= False, unique=True)
-    password = db.Column(db.String VARCHAR(12), nullable= False, unique=True)
-    email = db.Column(db.String, unique=True)
-    phone = db.Column(db.String, unique=True)
+    user_id = db.Column(db.Integer, autoincrement= True, primary_key= True)
+    username = db.Column(db.String(15), nullable= False, unique=True)
+    password = db.Column(db.String(25), nullable= False)
+    email = db.Column(db.String(25), unique=True) #create an option to add/edit email and phone later if it is not already provided
+    phone = db.Column(db.String(20), unique=True)
 
-    flashcards = db.relationship("flashcard", back_populates="user")
+    flashcards = db.relationship("Flashcard", back_populates="user")
 
     def __repr__(self):
         """Display User info."""
 
-        #think about what user information is needed in this return,
+        #think about what user information is needed in this return string,
         #what would it be useful for?
-        return f"<user_id = {self.user_id}, username = {self.username}, email = {self.email}>"
+        return f"<user_id = {self.user_id}, username = {self.username}>"
 
 
 
-class Flashcard(db.model):
-     """Flashcard Class"""
+class Flashcard(db.Model):
+    """Flashcard Class"""
 
     __tablename__ = "flashcards"
-    flashcard_id = db.Column(db.Integer,
-                        autoincrement= True
-                        primary_key= True)
+    flashcard_id = db.Column(db.Integer, autoincrement= True, primary_key= True)
     front_card = db.Column(db.Text, nullable= False)
     back_card = db.Column(db.Text, nullable= False)
-    user_id = db.Column(db.Integer) #this needs to be the same as user.user_id
-    category_id = db.Column(db.Integer
-                        autoincrement= True)
+    category_id = db.Column(db.Integer, db.ForeignKey("categories.category_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
-    user = db.relationship("category", back_populates="flashcards")
-    category = db.relationship("category", back_populates="flashcards")
+    user = db.relationship("User", back_populates="flashcards")
+    category = db.relationship("Category", back_populates="flashcards")
 
     def __repr__(self):
         """Display Flashcard info."""
 
-        return f"<flashcard_id = {self.user_id}, front_card = {self.front_card}, 
-        back_card = {self.back_card}, category_id = {self.category_id}>"
+        return f"<flashcard_id = {self.user_id}, front_card = {self.front_card}>"
 
 
-class Category(db.model):
+class Category(db.Model):
     """Category Class"""
 
     __tablename__ = "categories"
     category_id = db.Column(db.Integer,
-                        autoincrement= True
+                        autoincrement= True,
                         primary_key= True)
-    category_name = db.Column(db.String VARCHAR(50))
+    category_name = db.Column(db.String(50))
 
-    flashcards = db.relationship("flashcard", back_populates="category")
+    flashcards = db.relationship("Flashcard", back_populates="category")
 
 def __repr__(self):
-        """Display Category info."""
+    """Display Category info."""
 
-        return f"<category_id = {self.user_id}, category_name = {self.category_name}>"
+    return f"<category_id = {self.user_id}, category_name = {self.category_name}>"
 
 
 
-def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=False):
+def connect_to_db(flask_app, db_uri="postgresql:///flashcards", echo=False):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
