@@ -11,15 +11,19 @@ def create_user(username, password, email, phone):
 
 
 def get_user_by_username(username):
-    """Gets a user by their email""" #so they can login
+    """Gets a user by their username""" #so they can login with username
 
-    username = User.query.filter(User.username== username).first()
+    user = User.query.filter(User.username== username).first()
 
-    if username:
-        return username
-    
-    else:
-        return None
+    return user
+
+
+def get_user_by_id(user_id):
+    """Gets a user by their id"""
+
+    user = User.query.filter(User.user_id== user_id).first()
+
+    return user
 
 
 def create_flashcard(front_card, back_card, category_id, user_id):

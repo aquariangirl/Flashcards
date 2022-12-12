@@ -63,20 +63,17 @@ def login_user():
     return redirect("/")
 
 
-@app.route('/user-profile')  # TODO
+@app.route('/user-profile')
 def show_my_profile():
     """Shows the users own profile."""
 
-    # statement that checks if a user is logged in, and returns their own user profile page
+    if "user_id" in session:
+        user = crud.get_user_by_id(session["user_id"])
+        return render_template('user-profile.html', user=user)
 
-    user = 
-
-    if user:
-        session['user_id'] = user.user_id
-
-
-
-    return render_template('user-profile.html') #, user=user)
+    else:
+        flash("Please log in to view your profile.")
+        return redirect("/")
 
 
 @app.route('/categories')
