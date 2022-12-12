@@ -45,7 +45,7 @@ def get_all_flashcards():
 def get_all_categories():
     """Get a list of all categories"""
 
-    all_categories = db.session.query(Category.category_id).all() #should this be category_name? for displaying
+    all_categories = db.session.query(Category.category_id, Category.category_name).all() #testing
 
     return all_categories
 

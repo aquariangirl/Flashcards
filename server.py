@@ -34,6 +34,11 @@ def show_flashcard(flashcard):
     return render_template('movie_details.html', movie=movie)
 
 
+@app.route('/find-user')
+def find_user(flashcard):
+
+
+    return render_template('find-user.html') #, movie=movie)
 
 
 
