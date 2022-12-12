@@ -60,7 +60,7 @@ def login_user():
     else:
         flash("No account associated with email.")
 
-    return redirect("/")
+    return redirect("/user-profile")
 
 
 @app.route('/user-profile')
