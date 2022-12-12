@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Flashcards!{% endblock %}
+
+{% block body %}
+<h1>This is your profile. Here you can view your own flashcards and make any user profile changes.</h1>
+
+{% endblock %}

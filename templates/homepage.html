@@ -8,17 +8,22 @@
   <ul>
     <li><a href="/categories">View all the categories.</a></li>
     <li><a href="/search-for-flashcards">Search for flashcards by keywords.</a></li>
-    <li><a href="/my-profile">See your profile.</a></li>
+    <li><a href="/user-profile">View your profile.</a></li>
   </ul>
 
   <h2>Create an Account</h2>
   <form action="/users" method="POST">
     <p>
-      Email <input type="text" name="email">
+      Username <input type="text" name="username">
     </p>
-
     <p>
       Password <input type="password" name="password">
+    </p>
+    <p>
+      Email <input type="text" name="email">
+    </p>
+    <p>
+      Phone <input type="text" name="phone">
     </p>
 
     <p>
@@ -29,7 +34,7 @@
   <h2>Login</h2>
   <form action="/login" method="POST">
     <p>
-      Email <input type="text" name="email">
+      Username <input type="text" name="username">
     </p>
 
     <p>
