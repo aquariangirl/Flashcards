@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Flashcards!{% endblock %}
+
+{% block body %}
+<h1>Here you can create a new flashacrd.</h1>
+
+<form action="/action_page.php">
+    <label for="front_card">Front of Card: </label>
+    <input type="text" id="front_card" name="front_card"><br><br>
+    <label for="back_card">Back of Card: </label>
+    <input type="text" id="back_card" name="back_card"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+{% endblock %}

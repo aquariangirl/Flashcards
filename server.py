@@ -84,14 +84,41 @@ def all_categories():
     return render_template('categories.html', categories=categories)
 
 
-@app.route('/categories/<flashcard_id>')
+@app.route('/categories/<flashcard_id>') # TODO
 def show_flashcard(flashcard):
 
-    flashcard = crud.get_flashcard_by_category(flashacrd_id)
+    flashcard = crud.get_flashcard_by_category(flashcard_id)
 
-    return render_template('movie_details.html', movie=movie)
+    return render_template('flashcards.html') #, flashcard=flashcard)
 
 
+@app.route('/new-flashcard')
+def add_new_flashcard():
+    """Shows where logged-in user inputs flashcard data""" 
+    
+    return render_template('new-flashcard.html')
+
+
+# @app.route('/flashcard') # TODO
+# def add_new_flashcard(flashcard_id):
+#     """Logged-in user creates a new flashcard""" 
+    
+#     category = category_id
+
+#     #if 'user_id' in session  ?
+#     if session.get('user_id'):
+#         flashcard = request.args.get('flashcard') #might be front_card and back_card?
+#         user = session['user_id']
+
+#         flashcard = crud.create_rating(flashcard, category, user) 
+#         db.session.add(flashcard)
+#         db.session.commit()
+
+#         return redirect(f'/flashcards/{flashcard_id}')
+
+#     else:
+#         flash("Please log in to create a flashcard.")
+#         return redirect(f'/flashcards/{flashcard_id}')
 
 
 
