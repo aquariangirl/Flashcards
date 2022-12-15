@@ -2,16 +2,22 @@
 {% block title %}Flashcards!{% endblock %}
 
 {% block body %}
-<h2>Add your flashcard to an existing category?</h2>
+<h2>First, choose the category for your flashcard.</h2>
 <body>
+    <p>
     <form action="/select-category" method="POST">
-        <label for="category_label">Your categories:</label>
+        <label for="category_label">You can select a previous category:</label>
             <select name="abc">
                 {% for category in categories %}  
-                    <option value="{{ category }}">{{ category }}</option>
+                    <option value="{{ category }}">{{ category.category_name }}</option>
                 {% endfor %}
-            </select>
+            </select> <br> <br> <br> <br>
+
+                <label for="new_category">...Or make a new category:</label> <br>
+                <input type="text" id="new-category" name="newcat">
+                
         <input type="submit"></input>
     </form>
+    </p>
 </body>
 {% endblock %}
