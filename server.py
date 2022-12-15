@@ -93,33 +93,65 @@ def show_flashcard(flashcard):
 
 
 @app.route('/new-flashcard')
-def add_new_flashcard():
+def new_flashcard():
     """Shows where logged-in user inputs flashcard data""" 
     
-    return render_template('new-flashcard.html')
+    categories = crud.get_all_categories()
+    #print(categories[0].category_name)
+
+    return render_template('new-flashcard.html', category_id=categories.category_id) #does it need the class name?
+    # return render_template('new-flashcard.html', category_id=categories[0].category_id) -- sending only the first, hardcoded. must change to which the user chooses
 
 
-# @app.route('/flashcard') # TODO
-# def add_new_flashcard(flashcard_id):
-#     """Logged-in user creates a new flashcard""" 
+#have user add a category, then add a flashcard which can be added to the category
+@app.route('/new-flashcard/<category_id>', methods=['POST']) # TODO
+def add_new_flashcard(category_id):
+    """Logged-in user creates a new flashcard""" 
     
-#     category = category_id
+    category = category_id
 
-#     #if 'user_id' in session  ?
-#     if session.get('user_id'):
-#         flashcard = request.args.get('flashcard') #might be front_card and back_card?
-#         user = session['user_id']
+    if session.get('user_id'):
+        front = request.form.get('front_card')
+        back = request.form.get('back_card')
+        user = session['user_id']
+        print(user)
 
-#         flashcard = crud.create_rating(flashcard, category, user) 
-#         db.session.add(flashcard)
-#         db.session.commit()
+        flashcard = crud.create_flashcard(front, back, category_id=category, user_id=user)
+        db.session.add(flashcard)
+        db.session.commit()
+        flashcard_id = flashcard.flashcard_id
 
-#         return redirect(f'/flashcards/{flashcard_id}')
+        return render_template('/all-flashcards.html')
+        # return redirect(f'/flashcards/{flashcard_id}')
 
-#     else:
-#         flash("Please log in to create a flashcard.")
-#         return redirect(f'/flashcards/{flashcard_id}')
+    else:
+        flash("Please log in to create a flashcard.")
+        return redirect(f'/flashcards/{flashcard_id}')
 
+
+@app.route("/select-category") #TODO
+def select_past_category():
+    """Selects a previously added category"""
+
+    #statment that gets category name from database ?
+    category_names = crud.get_all_categories()
+
+    #  category = category_id
+
+    # if session.get('user_id'):
+    #     my_category = request.form.get('category_name')
+    #     user = session['user_id']
+    #     # print(user)
+
+    #     category = crud.create_category(category_name=my_category)
+    #     db.session.add(category)
+    #     db.session.commit()
+    #     category_id = category.category_id
+
+    return render_template('select-category.html', categories=category_names)
+
+
+    return redirect("/new-flashcard") #, categories=category_names) #after POST, redirect to ("/new-flashcard")
 
 
 @app.route('/find-user') # TODO

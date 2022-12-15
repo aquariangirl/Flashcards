@@ -25,6 +25,16 @@ def get_user_by_id(user_id):
 
     return user
 
+# TODO create function that allows user to create a category
+#when user creates a flashcard, they much select which category to add the flashcard to
+
+def create_category(category_id):
+    """Allows user to create a category"""
+
+    category = Category(category_name)
+
+    return category
+
 
 def create_flashcard(front_card, back_card, category_id, user_id):
     """Create and return a new flashcard"""
@@ -48,6 +58,7 @@ def get_all_users():
     all_users = db.session.query(User.user_id, User.username).all()
 
     return all_users
+    
 
 # def show_my_profile(): # TODO
 #     """Get a users profile"""
@@ -68,7 +79,7 @@ def get_all_flashcards():
 def get_all_categories():
     """Get a list of all categories"""
 
-    all_categories = db.session.query(Category.category_id, Category.category_name).all() # TODO
+    all_categories = db.session.query(Category.category_id, Category.category_name).all()
 
     return all_categories
 

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Flashcards!{% endblock %}
+
+{% block body %}
+<h2>Add your flashcard to an existing category?</h2>
+<body>
+    <form action="/select-category" method="POST">
+        <label for="category_label">Your categories:</label>
+            <select name="abc">
+                {% for category in categories %}  
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select>
+        <input type="submit"></input>
+    </form>
+</body>
+{% endblock %}
