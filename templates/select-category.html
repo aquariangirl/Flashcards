@@ -4,14 +4,16 @@
 {% block body %}
 <h2>First, choose the category for your flashcard.</h2>
 <body>
-    <p>
+    <p><br>
     <form action="/new-flashcard">
         <label for="category_label">You can select a previous category:</label>
             <select name="category-choice">
                 {% for category in categories %}  
                     <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                 {% endfor %}
-            </select> <br><br><br><br>
+                <input type="submit"></input>
+        <label for="new_category_label"></label>
+            </select> <br><br><br>
                 <label for="new_category">...Or make a new category:</label> <br>
                 <input type="text" id="new-category" name="newcat">
                 
