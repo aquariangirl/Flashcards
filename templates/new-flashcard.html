@@ -2,14 +2,17 @@
 {% block title %}Flashcards!{% endblock %}
 
 {% block body %}
-<h1>Here you can create a new flashcard.</h1>
 
-<form action="/new-flashcard/{{ category_id }}" method='POST'>
-    <label for="front_card">Front of Card: </label>
+<h2>Now enter your flashcard details:</h2>
+
+<form action="/create-flashcard" method='POST'>
+    <label for="category_name">Category:</label>
+    <input disabled="disabled" type="text" id="category" name="category_name" value="{{ category_choice }}"><br><br>
+    <label for="front_card">Front of Card:</label>
     <input type="text" id="front_card" name="front_card"><br><br>
-    <label for="back_card">Back of Card: </label>
+    <label for="back_card">Back of Card:</label>
     <input type="text" id="back_card" name="back_card"><br><br>
     <input type="submit" value="Submit">
-  </form>
+</form>
 
 {% endblock %}
