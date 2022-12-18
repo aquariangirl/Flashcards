@@ -63,6 +63,16 @@ def login_user():
     return redirect("/user-profile")
 
 
+@app.route("/logout") 
+def logout_user():
+    """Logout user."""
+
+    session.pop('user_id', None)
+    #flash("You have been logged out.") #TODO flash not working, maybe add it in app.route("/")
+
+    return redirect("/")
+
+
 @app.route('/user-profile')
 def show_my_profile():
     """Shows the users own profile."""
@@ -82,6 +92,45 @@ def all_categories():
     categories = crud.get_all_categories()
 
     return render_template('categories.html', categories=categories)
+
+# @app.route('/select-category')
+# def show_category_options():
+
+#     categories = crud.get_all_categories()
+
+#     return render_template('select-category.html', categories=categories)
+
+
+@app.route("/select-category") #TODO
+def select_past_category():
+    """Selects a previously added category"""
+
+    category_names = crud.get_all_categories()
+
+    
+    return render_template('select-category.html', categories=category_names)
+
+
+
+@app.route('/create-category', methods=['POST']) #TODO
+def create_category():
+    """Add a new category to database"""
+
+    #statment that gets category name from input ?
+    #new_category_names = 
+
+    if session.get('user_id'):
+        my_category = request.form.get('new-category')
+        user = session['user_id']
+        # print(user)
+        category_id = crud.get_category_id(category) #is this necessary ?
+
+
+    category = crud.create_category(category_name=my_category, category_id=category_id)
+    db.session.add(category)
+    db.session.commit()
+
+    return render_template('new-flashcard.html', categories=category_names)
 
 
 @app.route('/categories/<flashcard_id>') # TODO
@@ -104,7 +153,7 @@ def create_flashcard():
         print(user)
         print(front)
         print(back)
-        category_id = crud.get_category_id(category)
+        category_id = crud.get_category_id(category) 
 
 
     flashcard = crud.create_flashcard(front_card=front, back_card=back, category_id=category_id, user_id=user)
@@ -124,64 +173,6 @@ def new_flashcard():
 
     return render_template('new-flashcard.html', category_choice=category) #, category_id=category_id)
     
-
-
-
-#have user add a category, then add a flashcard which can be added to the category
-# @app.route('/new-flashcard/<category_id>') #, methods=['POST']) # TODO
-# def add_new_flashcard(category_id):
-#     """Shows where logged-in user inputs flashcard data""" 
-    
-#     #statement that will show the selected category
-#     category = request.args.get("category-choice")
-
-
-#     # #
-#     # category = category_id
-
-#     # if session.get('user_id'):
-#     #     front = request.form.get('front_card')
-#     #     back = request.form.get('back_card')
-#     #     user = session['user_id']
-#     #     print(user)
-
-#     #     flashcard = crud.create_flashcard(front, back, category_id=category, user_id=user)
-#     #     db.session.add(flashcard)
-#     #     db.session.commit()
-#     #     flashcard_id = flashcard.flashcard_id
-
-#         return render_template('/all-flashcards.html')
-#         # return redirect(f'/flashcards/{flashcard_id}')
-
-#     else:
-#         flash("Please log in to create a flashcard.")
-
-#         # #
-
-        #return redirect(f'/flashcards/{flashcard_id}') #uncomment once done playing with flashcard hardcode
-
-
-@app.route("/select-category") #TODO
-def select_past_category():
-    """Selects a previously added category"""
-
-    #statment that gets category name from database ?
-    category_names = crud.get_all_categories()
-
-    #  category = category_id
-
-    # if session.get('user_id'):
-    #     my_category = request.form.get('category_name')
-    #     user = session['user_id']
-    #     # print(user)
-
-    #     category = crud.create_category(category_name=my_category)
-    #     db.session.add(category)
-    #     db.session.commit()
-    #     category_id = category.category_id
-
-    return render_template('select-category.html', categories=category_names)
-
 
     return redirect("/new-flashcard") #, categories=category_names) #after POST, redirect to ("/new-flashcard")
 

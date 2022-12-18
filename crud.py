@@ -89,7 +89,7 @@ def get_category_id(category_name):
     categories = db.session.query(Category.category_id)
     category_id = categories.filter(Category.category_name==category_name).first()
 
-    return category_id[0]
+    return category_id[0] #TODO TypeError: 'NoneType' object is not subscriptable
 
 
 def get_flashcard_by_category():
