@@ -12,10 +12,12 @@
                     <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                 {% endfor %}
                 <input type="submit"></input>
-        <label for="new_category_label"></label>
+    </form>
+    <form action="/create-category", method="POST">
+        <label for="new-category"></label>
             </select> <br><br><br>
-                <label for="new_category">...Or make a new category:</label> <br>
-                <input type="text" id="new-category" name="newcat">
+                <label for="new-category">...Or make a new category:</label> <br>
+                <input type="text" id="new-category" name="new-category">
                 
         <input type="submit"></input>
     </form>

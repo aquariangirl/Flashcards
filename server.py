@@ -93,13 +93,6 @@ def all_categories():
 
     return render_template('categories.html', categories=categories)
 
-# @app.route('/select-category')
-# def show_category_options():
-
-#     categories = crud.get_all_categories()
-
-#     return render_template('select-category.html', categories=categories)
-
 
 @app.route("/select-category") #TODO
 def select_past_category():
@@ -112,33 +105,41 @@ def select_past_category():
 
 
 
-@app.route('/create-category', methods=['POST']) #TODO
+@app.route('/create-category', methods=['POST'])
 def create_category():
     """Add a new category to database"""
-
-    #statment that gets category name from input ?
-    #new_category_names = 
 
     if session.get('user_id'):
         my_category = request.form.get('new-category')
         user = session['user_id']
         # print(user)
-        category_id = crud.get_category_id(category) #is this necessary ?
+        category_id = crud.get_category_id(my_category)
 
 
-    category = crud.create_category(category_name=my_category, category_id=category_id)
+    category = crud.create_category(category_name=my_category)
     db.session.add(category)
     db.session.commit()
 
-    return render_template('new-flashcard.html', categories=category_names)
+    return render_template('new-flashcard.html', category_choice=my_category)
+
+
+@app.route('/categories/<category_id>') # TODO
+def show_flashcard(flashcard):
+    """Displays all flashacrds within a single category."""
+
+    flashcard = crud.get_flashcard_by_category(flashcard_id)
+
+    return render_template('view-flashcard.html') #, flashcard=flashcard)
+
 
 
 @app.route('/categories/<flashcard_id>') # TODO
 def show_flashcard(flashcard):
+    """Displays a single flashcard"""
 
     flashcard = crud.get_flashcard_by_category(flashcard_id)
 
-    return render_template('flashcards.html') #, flashcard=flashcard)
+    return render_template('view-flashcard.html') #, flashcard=flashcard)
 
 
 
@@ -161,6 +162,13 @@ def create_flashcard():
     db.session.commit()
     
     return render_template("all-flashcards.html")
+
+
+# @app.route('#/')
+
+# flashcards = #crud.get_all_categories()
+
+#     #return render_template('categories.html', categories=categories)
 
 
 @app.route('/new-flashcard') # TODO

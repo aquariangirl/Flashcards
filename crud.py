@@ -28,10 +28,18 @@ def get_user_by_id(user_id):
 # TODO create function that allows user to create a category
 #when user creates a flashcard, they much select which category to add the flashcard to
 
-def create_category(category_id):
-    """Allows user to create a category"""
+# def create_category(category_id):
+#     """Allows user to create a category"""
 
-    category = Category(category_name)
+#     category = Category(category_name)
+
+#     return category
+
+
+def create_category(category_name):
+    """Create category"""
+
+    category = Category(category_name=category_name)
 
     return category
 
@@ -44,12 +52,7 @@ def create_flashcard(front_card, back_card, category_id, user_id):
     return flashcard
 
 
-def create_category(category_name):
-    """Create category"""
 
-    category = Category(category_name=category_name)
-
-    return category
 
 
 def get_all_users():
@@ -89,7 +92,7 @@ def get_category_id(category_name):
     categories = db.session.query(Category.category_id)
     category_id = categories.filter(Category.category_name==category_name).first()
 
-    return category_id[0] #TODO TypeError: 'NoneType' object is not subscriptable
+    return category_id
 
 
 def get_flashcard_by_category():
