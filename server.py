@@ -113,33 +113,36 @@ def create_category():
         my_category = request.form.get('new-category')
         user = session['user_id']
         # print(user)
-        category_id = crud.get_category_id(my_category)
-
-
+        
     category = crud.create_category(category_name=my_category)
     db.session.add(category)
     db.session.commit()
 
+    category_id = crud.get_category_id(my_category)
+    print(category_id)
+
     return render_template('new-flashcard.html', category_choice=my_category)
 
 
-@app.route('/categories/<category_id>') # TODO
-def show_flashcard(flashcard):
-    """Displays all flashacrds within a single category."""
+@app.route('/categories/<category_name>') # TODO
+def show_category_flashcards(category_name):
+    """Displays all flashcards within a single category."""
 
-    flashcard = crud.get_flashcard_by_category(flashcard_id)
+    category = crud.get_category_name(category_name)
+    flashcard = crud.get_flashcard_by_category(category_name)
+    print(flashcard)
 
-    return render_template('view-flashcard.html') #, flashcard=flashcard)
+    return render_template('flashcards-in-category.html', flashcard=flashcard, category_name=category)
 
 
 
-@app.route('/categories/<flashcard_id>') # TODO
+@app.route('/categories/<category_id>/<flashcard_id>') # TODO
 def show_flashcard(flashcard):
     """Displays a single flashcard"""
 
-    flashcard = crud.get_flashcard_by_category(flashcard_id)
+    flashcard = crud.get_flashcard_by_category(flashcard)
 
-    return render_template('view-flashcard.html') #, flashcard=flashcard)
+    return render_template('view-flashcard.html', flashcard=flashcard)
 
 
 
@@ -149,19 +152,21 @@ def create_flashcard():
     if session.get('user_id'):
         front = request.form.get('front_card')
         back = request.form.get('back_card')
-        category = request.form.get('category_name')
+        category = request.form.get('category_name') # TODO returns None
         user = session['user_id']
         print(user)
         print(front)
         print(back)
+        print(category)
         category_id = crud.get_category_id(category) 
+        print(category_id)
 
 
     flashcard = crud.create_flashcard(front_card=front, back_card=back, category_id=category_id, user_id=user)
     db.session.add(flashcard)
     db.session.commit()
     
-    return render_template("all-flashcards.html")
+    return render_template("view-flashcard.html")
 
 
 # @app.route('#/')

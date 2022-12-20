@@ -87,20 +87,31 @@ def get_all_categories():
     return all_categories
 
 
-def get_category_id(category_name):
+def get_category_id(category_name): # TODO
+    """Get category id by its name"""
     
-    categories = db.session.query(Category.category_id)
-    category_id = categories.filter(Category.category_name==category_name).first()
+    categories = Category.query.filter(Category.category_name==category_name).first()
+    
+    if categories:
+        return categories.category_id
 
-    return category_id
 
-
-def get_flashcard_by_category():
+def get_flashcard_by_category(category_name):
     """Get a flashcard by its category"""
 
-    flashcard = Flashcard.query.get(Category.category_id, Category.category_name)
+    flashcard = Flashcard.query.get(category_name)
 
     return flashcard
+
+
+def get_category_name(category_id):
+    """Get a flashcard by its category name"""
+
+    # flashcard = Flashcard.query.get(category_name)
+    category = Category.query.get(category_id)
+    category_name = category.category_name
+
+    return category_name
 
 
 def get_flashcard_by_user():

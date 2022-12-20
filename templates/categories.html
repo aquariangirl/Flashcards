@@ -3,7 +3,7 @@
 
 {% block body %}
 
-<h1>Here are all of the categories of flashcards. Select one to view its list of flashcards.</h1> 
+<h1>Here are all of the categories of flashcards. Select one to view its flashcards.</h1> 
 <ul>
     {% for category in categories %}
     <li><a href="/categories/{{ category.category_id }}">{{ category.category_name }}></a></li>
