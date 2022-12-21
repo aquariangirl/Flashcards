@@ -2,11 +2,19 @@
 {% block title %}Flashcards!{% endblock %}
 
 {% block body %}
+
 <h1>A single flashcard displays here.</h1>
 
-<h3># this html is a place-holder</h3>
-<ul>
-   
-</ul>
+<section>
+    <h2>
+    
+        <h3>{{ flashcard.front_card }}<br>
+            {{ flashcard.back_card }}
+        <p> </p>
+    
+        </h2>
+</section>
+    
+
 
 {% endblock %}

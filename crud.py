@@ -74,7 +74,11 @@ def get_all_users():
 def get_all_flashcards():
     """Get a list of all flashcards"""
 
-    all_flashcards = db.session.query(Flashcard.flashcard_id).all()
+    all_flashcards = db.session.query(Flashcard.flashcard_id, 
+                                        Flashcard.front_card, 
+                                        Flashcard.back_card, 
+                                        Flashcard.category_id, 
+                                        Flashcard.user_id).all()
 
     return all_flashcards
 
@@ -97,9 +101,34 @@ def get_category_id(category_name): # TODO
 
 
 def get_flashcard_by_category(category_name):
-    """Get a flashcard by its category"""
+    """Get a flashcard by its category name"""
 
     flashcard = Flashcard.query.get(category_name)
+
+    return flashcard
+
+
+def get_flashcards_by_category(category_name):
+    """Get all flashcards by its category name"""
+
+    flashcards = Flashcard.query.get(category_name)
+
+    return flashcards
+
+
+
+def get_flashcard_by_id(flashcard_id):
+    """Get a flashcard by its category id"""
+
+    flashcard = Flashcard.query.get(flashcard_id)
+
+    return flashcard
+
+
+def get_flashcard_by_category(category_id):
+    """Get a flashcard by its category id"""
+
+    flashcard = Flashcard.query.get(category_id)
 
     return flashcard
 

@@ -68,7 +68,7 @@ def logout_user():
     """Logout user."""
 
     session.pop('user_id', None)
-    #flash("You have been logged out.") #TODO flash not working, maybe add it in app.route("/")
+    flash("You have been logged out.")
 
     return redirect("/")
 
@@ -94,7 +94,7 @@ def all_categories():
     return render_template('categories.html', categories=categories)
 
 
-@app.route("/select-category") #TODO
+@app.route("/select-category")
 def select_past_category():
     """Selects a previously added category"""
 
@@ -124,25 +124,30 @@ def create_category():
     return render_template('new-flashcard.html', category_choice=my_category)
 
 
-@app.route('/categories/<category_name>') # TODO
+@app.route('/categories/<category_name>') 
 def show_category_flashcards(category_name):
     """Displays all flashcards within a single category."""
 
     category = crud.get_category_name(category_name)
-    flashcard = crud.get_flashcard_by_category(category_name)
-    print(flashcard)
+    # flashcard = crud.get_flashcard_by_category(category_name)
+    # print(flashcard)
 
-    return render_template('flashcards-in-category.html', flashcard=flashcard, category_name=category)
+    
+    flashcards = crud.get_flashcards_by_category(category_name) # TODO
+
+    return render_template('flashcards-in-category.html', category_name=category, flashcards=flashcards)
 
 
 
-@app.route('/categories/<category_id>/<flashcard_id>') # TODO
-def show_flashcard(flashcard):
+@app.route('/categories/<category_name>/<flashcard_id>') # TODO
+def show_flashcard(category_name, flashcard_id):
     """Displays a single flashcard"""
 
-    flashcard = crud.get_flashcard_by_category(flashcard)
+    flashcards = crud.get_all_flashcards()
+    flashcard = crud.get_flashcard_by_id(flashcard_id) # TODO
+    #print(flashcards)
 
-    return render_template('view-flashcard.html', flashcard=flashcard)
+    return render_template('view-flashcard.html', flashcards=flashcards, flashcard=flashcard)
 
 
 
@@ -152,37 +157,37 @@ def create_flashcard():
     if session.get('user_id'):
         front = request.form.get('front_card')
         back = request.form.get('back_card')
-        category = request.form.get('category_name') # TODO returns None
+        category = request.form.get('category_name')
         user = session['user_id']
-        print(user)
-        print(front)
-        print(back)
-        print(category)
+        # print(user)
+        # print(front)
+        # print(back)
+        # print(category)
         category_id = crud.get_category_id(category) 
-        print(category_id)
+        # print(category_id)
 
 
     flashcard = crud.create_flashcard(front_card=front, back_card=back, category_id=category_id, user_id=user)
     db.session.add(flashcard)
     db.session.commit()
     
-    return render_template("view-flashcard.html")
+    return render_template("view-flashcard.html") # change to redirect?
 
 
 # @app.route('#/')
-
-# flashcards = #crud.get_all_categories()
-
-#     #return render_template('categories.html', categories=categories)
+#     """View a single flashcard"""
 
 
-@app.route('/new-flashcard') # TODO
+#     return render_template('view-f.html', categories=categories)
+
+
+@app.route('/new-flashcard')
 def new_flashcard():
     """Shows selected Category -- and allows user to input new flashcard data""" 
     
     category = request.args.get("category-choice")
-    print("*"*20)
-    print(category)
+    # print("*"*20)
+    # print(category)
 
     return render_template('new-flashcard.html', category_choice=category) #, category_id=category_id)
     
