@@ -209,11 +209,29 @@ def new_flashcard():
     return redirect("/new-flashcard") #, categories=category_names) #after POST, redirect to ("/new-flashcard")
 
 
-@app.route('/find-user') # TODO
-def find_user(flashcard):
+# @app.route('/find-user') # TODO
+# def find_user(flashcard):
 
 
-    return render_template('find-user.html') #, movie=movie)
+#     return render_template('find-user.html') #, movie=movie)
+
+
+@app.route("/search")
+def search():
+    return render_template("search.html")
+
+
+@app.route("/flashcardresult", methods=['POST'])
+def flashcard_result():
+    keyword = request.form.get("keyword")
+    list1 = []
+
+    results = session.query(Strore).all()
+    for i in results:
+        if ( keyword in i.keyword) is True:
+            list1.append(i.keyword)
+    return render_template("flashcardresult.html", count=len(list1), result=list1)
+    session.commit()
 
 
 
