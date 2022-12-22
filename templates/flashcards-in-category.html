@@ -5,10 +5,11 @@
 
 <h1>Here are all the flashcards in category {{ category_name }}</h1> 
 <ul>
+    
     {% for flashcard in flashcards %}
-    <h3>{{ flashcard.front_card }}
-    <p>{{ flashcard.back_card }}</p>
-    </h3>
+
+    <li><a href="/categories/{{ flashcard.flashcard_id }}">{{ flashcard.front_card }}></a></li>
+    
     {% endfor %}  
 </ul>
 {% endblock %}

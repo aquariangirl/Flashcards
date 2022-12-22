@@ -130,22 +130,26 @@ def show_category_flashcards(category_name):
 
     category = crud.get_category_name(category_name)
     # flashcard = crud.get_flashcard_by_category(category_name)
-    # print(flashcard)
+    # flashcard = 
 
+
+    flashcards = crud.get_flashcards_by_category(category_name) # edit to get all flashcards by catergory ?
     
-    flashcards = crud.get_flashcards_by_category(category_name) # TODO
-
-    return render_template('flashcards-in-category.html', category_name=category, flashcards=flashcards)
+    return render_template('flashcards-in-category.html', category_name=category, flashcards=flashcards, flashcard=flashcard)
 
 
 
-@app.route('/categories/<category_name>/<flashcard_id>') # TODO
+@app.route('/categories/<category_name>/<flashcard_id>')
 def show_flashcard(category_name, flashcard_id):
     """Displays a single flashcard"""
 
-    flashcards = crud.get_all_flashcards()
-    flashcard = crud.get_flashcard_by_id(flashcard_id) # TODO
-    #print(flashcards)
+    #there needs to be instructions on where to get the category_name and flashcard_id
+    # category_name = crud.get_category_id(category_name)
+    # flashcard = crud.get_flashcard_by_id(flashcard_id)
+
+    flashcards = crud.get_all_flashcards() #this works
+    flashcard = crud.get_flashcard_by_id(flashcard_id) #this works
+    # print(flashcards)
 
     return render_template('view-flashcard.html', flashcards=flashcards, flashcard=flashcard)
 
@@ -170,15 +174,25 @@ def create_flashcard():
     flashcard = crud.create_flashcard(front_card=front, back_card=back, category_id=category_id, user_id=user)
     db.session.add(flashcard)
     db.session.commit()
-    
-    return render_template("view-flashcard.html") # change to redirect?
+
+    return render_template("flashcard-added.html")
+    # return render_template("view-flashcard.html", flashcard=flashcard) # change to redirect?
+    # return redirect('/categories/<category_name>/<flashcard_id>')
+    #I think this should redirect to a new app route that will tell which flashcard to display?
+    # return redirect('/show-new-flashcard')
 
 
-# @app.route('#/')
-#     """View a single flashcard"""
 
+# @app.route('/show-new-flashcard')
+# def display_new_flashcard(): #might need to pass in?
+#     """View a single flashcard that was just created"""
 
-#     return render_template('view-f.html', categories=categories)
+#     # flashcards = crud.get_all_flashcards()
+#     flashcard = crud.get_flashcard_by_id(flashcard_id)
+
+#     #if statement: if a card was just added to db, display it by returning view-flashcard html
+
+#     return render_template('view-flashcard.html', flashcard=flashcard)
 
 
 @app.route('/new-flashcard')

@@ -116,6 +116,14 @@ def get_flashcards_by_category(category_name):
     return flashcards
 
 
+def get_flashcards_by_category(category_id):
+    """Get all flashcards by its category name"""
+
+    flashcards = Flashcard.query.get(category_id)
+
+    return flashcards
+
+
 
 def get_flashcard_by_id(flashcard_id):
     """Get a flashcard by its category id"""
