@@ -10,6 +10,9 @@ def create_user(username, password, email, phone):
     return user
 
 
+# def get_email():
+
+
 def get_user_by_username(username):
     """Gets a user by their username""" #so they can login with username
 
@@ -53,8 +56,6 @@ def create_flashcard(front_card, back_card, category_id, user_id):
 
 
 
-
-
 def get_all_users():
     """Get a list of all users"""
 
@@ -91,7 +92,7 @@ def get_all_categories():
     return all_categories
 
 
-def get_category_id(category_name): # TODO
+def get_category_id(category_name):
     """Get category id by its name"""
     
     categories = Category.query.filter(Category.category_name==category_name).first()
@@ -108,21 +109,22 @@ def get_flashcard_by_category(category_name):
     return flashcard
 
 
-def get_flashcards_by_category(category_name):
-    """Get all flashcards by its category name"""
-
-    flashcards = Flashcard.query.get(category_name)
-
-    return flashcards
-
-
 def get_flashcards_by_category(category_id):
     """Get all flashcards by its category name"""
 
-    flashcards = Flashcard.query.get(category_id)
+    flashcards = Flashcard.query.filter(Flashcard.category_id==category_id).all()
 
     return flashcards
 
+
+def search_flashcards(keyword):
+
+    # create crud function that will use LIKE % to return keyword searched
+    print(keyword)
+    search = "%{}%".format(keyword)
+    results = Flashcard.query.filter((Flashcard.front_card.ilike(search))).all()
+
+    return results
 
 
 def get_flashcard_by_id(flashcard_id):
@@ -144,19 +146,18 @@ def get_flashcard_by_category(category_id):
 def get_category_name(category_id):
     """Get a flashcard by its category name"""
 
-    # flashcard = Flashcard.query.get(category_name)
     category = Category.query.get(category_id)
     category_name = category.category_name
 
     return category_name
+    
 
+def get_flashcards_by_user(user_id):
+    """Get all flashcard by its user"""
 
-def get_flashcard_by_user():
-    """Get a flashcard by its user"""
+    flashcards = Flashcard.query.filter(Flashcard.user_id==user_id).all()
 
-    flashcard = Flashcard.query.get(User.user_id)
-
-    return flashcard
+    return flashcards
 
 
 def get_user_by_flashcard():
@@ -168,13 +169,7 @@ def get_user_by_flashcard():
 
 
 
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
-
-
-
-
-
-
-

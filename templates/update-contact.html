@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}All of the Categories{% endblock %}
+
+{% block body %}
+
+<h1>Contact information should be here:</h1>
+
+<p>This is the phone number {{ phone }}.</p>
+<p>This the email {{ email }}</p>
+<form action="/update-information" method="POST">
+    <label for="phone">Update Phone:</label>
+    <input type="text" value="{{ phone }}" id="phone" name="phone"><br><br>
+    <label for="email">Update Email:</label>
+    <input type="text" value="{{ email }}" id="email" name="email"><br><br>
+    <input type="submit" value="Submit">
+</form>
+
+
+{% endblock %}

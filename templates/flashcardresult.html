@@ -6,20 +6,13 @@
     <h1>The result of your search.</h1> 
 
         <table>
+            {% for result in results %}
             <tr>
-                <th> Flashcard front_card </th>
-                <th> Flashcard back_card </th>
-            </tr>
-{% for i in range(count) %}
-            <tr>
-                <td>  {{ result[i] }} </td>
-                <td> <form>
-    <input type="radio" name="">
-    <label for=""></label>
-</form> </td>
-            <td> <textarea name="" id="" cols="30" rows="10"></textarea> </td>
-            </tr>
-{% endfor %}
+                <th> {{ result.front_card }}</th>
+                <th> {{ result.back_card }}</th>
+            </tr> 
+            {% endfor %}
+            
         </table>
 
 {% endblock %}

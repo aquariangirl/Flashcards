@@ -3,15 +3,12 @@
 
 {% block body %}
 
-<h1>Here are all the flashcards in category {{ category_name }}</h1> 
+<h1>Here are all of my flashcards.</h1> 
 <ul>
-    
     {% for flashcard in flashcards %}
-
     <li>{{ flashcard.front_card }} <br>
         {{ flashcard.back_card }}
-    </li> <br> <br>
-    
-    {% endfor %}  
+    </li>
+    {% endfor %}
 </ul>
 {% endblock %}
