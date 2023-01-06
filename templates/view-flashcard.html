@@ -9,14 +9,9 @@
             <h3>{{ flashcard.front_card }}<br>
                 {{ flashcard.back_card }}</h3>
         </li>
-        <button type="button">Delete Flashcard</button>
-
-        <form action="/delete-flashcard" method="POST">
-              <input type="Delete Flashcard">
-            </p>
-          </form>
-
+            <button name= "{{ flashcard.flashcard_id }}" onclick="deleteFlashcard(name)">Delete Flashcard</button> <br>
+            </p>    
     </section>
         
-       
+       <script src="../static/view-flashcard.js"></script>
 {% endblock %}

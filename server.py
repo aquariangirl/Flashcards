@@ -1,6 +1,6 @@
 """Server for movie ratings app."""
 
-from flask import (Flask, render_template, request, flash, session, redirect)
+from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
@@ -114,7 +114,7 @@ def update_information():
 
     db.session.commit()
 
-    return "Updated"
+    return "Updated" #TODO
 
 @app.route('/categories')
 def all_categories():
@@ -226,20 +226,26 @@ def show_my_flashcard(flashcard_id):
 
 
 
-@app.route('/delete-flashcard')
+@app.route('/delete-flashcard', methods=['POST'])
 def delete_flashcard():
     """Deletes a flashcard"""
 
+    flashcard_id = request.json["flashcard_id"]
+    # print("*"*20)
+    # print(flashcard_id)
 
     flashcard = crud.get_flashcard_by_id(flashcard_id)
 
-    #get flashcard by id to delete the flashcard
-    # crud.get_flashcard_by_id
 
     db.session.delete(flashcard)
-    db.session.commit() 
+    db.session.commit()
+    
+    # flash("Flashcard Deleted!")
+    # return "test"
+    # return render_template('delete-flashcard.html')
+    return "deleted flashcard" # jsonify({'flashcard_id':flashcard_id})
 
-    return render_template('delete-flashcard.html', flashcard=flashcard)
+    
 
 
 
