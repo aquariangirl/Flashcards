@@ -7,11 +7,11 @@
 <ul>
     
     {% for flashcard in flashcards %}
-
+    <a href="/categories/{{ category_name }}/{{ flashcard.flashcard_id }}">
     <li>{{ flashcard.front_card }} <br>
         {{ flashcard.back_card }}
     </li> <br> <br>
-    
+    </a>
     {% endfor %}  
 </ul>
 {% endblock %}

@@ -28,16 +28,6 @@ def get_user_by_id(user_id):
 
     return user
 
-# TODO create function that allows user to create a category
-#when user creates a flashcard, they much select which category to add the flashcard to
-
-# def create_category(category_id):
-#     """Allows user to create a category"""
-
-#     category = Category(category_name)
-
-#     return category
-
 
 def create_category(category_name):
     """Create category"""

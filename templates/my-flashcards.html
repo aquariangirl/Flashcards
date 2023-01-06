@@ -6,9 +6,11 @@
 <h1>Here are all of my flashcards.</h1> 
 <ul>
     {% for flashcard in flashcards %}
-    <li>{{ flashcard.front_card }} <br>
-        {{ flashcard.back_card }}
-    </li>
+    <li><a href="/my-flashcards/{{ flashcard.flashcard_id }}">
+        {{ flashcard.front_card }}<br>
+        {{ flashcard.back_card }}<br><br>
+    </a></li>
+    
     {% endfor %}
 </ul>
 {% endblock %}

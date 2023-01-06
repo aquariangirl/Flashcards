@@ -124,17 +124,6 @@ def all_categories():
     return render_template('categories.html', categories=categories)
 
 
-@app.route('/my-flashcards')
-def show_my_flashcards():
-    """Displays all flashcards created by user"""
-
-    user_id = session['user_id']
-
-    my_flashcards = crud.get_flashcards_by_user(user_id)
-
-    return render_template('my-flashcards.html', flashcards=my_flashcards, user_id=user_id)
-
-
 @app.route("/select-category")
 def select_past_category():
     """Selects a previously added category"""
@@ -182,15 +171,14 @@ def show_category_flashcards(category_name):
 def show_flashcard(category_name, flashcard_id):
     """Displays a single flashcard"""
 
-    #there needs to be instructions on where to get the category_name and flashcard_id
-    # category_name = crud.get_category_id(category_name)
-    # flashcard = crud.get_flashcard_by_id(flashcard_id)
-
     flashcards = crud.get_all_flashcards() #this works
     flashcard = crud.get_flashcard_by_id(flashcard_id) #this works
     # print(flashcards)
 
-    return render_template('view-flashcard.html', flashcard=flashcard)
+    categories = crud.get_all_categories()
+
+
+    return render_template('view-flashcard.html', flashcard=flashcard, categories=categories)
 
 
 @app.route('/create-flashcard', methods=['POST'])
@@ -217,16 +205,41 @@ def create_flashcard():
     return redirect(f'/categories/{category}/{flashcard.flashcard_id}')
 
 
+@app.route('/my-flashcards')
+def show_my_flashcards():
+    """Displays all flashcards created by user"""
+
+    user_id = session['user_id']
+
+    my_flashcards = crud.get_flashcards_by_user(user_id)
+
+    return render_template('my-flashcards.html', flashcards=my_flashcards, user_id=user_id)
+
+
+@app.route('/my-flashcards/<flashcard_id>')
+def show_my_flashcard(flashcard_id): 
+    """Displays a single flashcard created by user"""
+
+    flashcard = crud.get_flashcard_by_id(flashcard_id)
+
+    return render_template('view-flashcard.html', flashcard=flashcard)
+
+
+
 @app.route('/delete-flashcard')
 def delete_flashcard():
     """Deletes a flashcard"""
 
-#get flashcard by id to delete the flashcard
+
+    flashcard = crud.get_flashcard_by_id(flashcard_id)
+
+    #get flashcard by id to delete the flashcard
+    # crud.get_flashcard_by_id
 
     db.session.delete(flashcard)
     db.session.commit() 
 
-    return render_template('delete-flashcard.html')
+    return render_template('delete-flashcard.html', flashcard=flashcard)
 
 
 
