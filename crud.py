@@ -10,9 +10,6 @@ def create_user(username, password, email, phone):
     return user
 
 
-# def get_email():
-
-
 def get_user_by_username(username):
     """Gets a user by their username""" #so they can login with username
 
@@ -45,21 +42,12 @@ def create_flashcard(front_card, back_card, category_id, user_id):
     return flashcard
 
 
-
 def get_all_users():
     """Get a list of all users"""
 
     all_users = db.session.query(User.user_id, User.username).all()
 
     return all_users
-    
-
-# def show_my_profile(): # TODO
-#     """Get a users profile"""
-
-#     my_profile = db.session.get(User.user_id, User.username)
-
-#     return my_profile
 
 
 def get_all_flashcards():
@@ -89,6 +77,13 @@ def get_category_id(category_name):
     
     if categories:
         return categories.category_id
+
+
+def get_category_by_id(category_id):
+
+    category = Category.query.get(category_id)
+
+    return category
 
 
 def get_flashcard_by_category(category_name):
@@ -140,7 +135,15 @@ def get_category_name(category_id):
     category_name = category.category_name
 
     return category_name
-    
+
+
+# def get_categories_by_user(user_id):
+#     """Get all categories by its user"""
+
+#     categories = Category.query.filter(Category.user_id==user_id).all()
+
+#     return categories
+
 
 def get_flashcards_by_user(user_id):
     """Get all flashcard by its user"""

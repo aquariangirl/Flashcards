@@ -17,6 +17,9 @@ def homepage():
 
     return render_template('homepage.html')
 
+
+
+
 @app.route("/users", methods=["POST"])
 def register_user():
     """Create a new user."""
@@ -38,6 +41,11 @@ def register_user():
 
     return redirect("/")
     # TODO add else statements if password is missing
+
+@app.route("/login")
+def login_page():
+
+    return render_template("login.html")
 
 
 @app.route("/login", methods=["POST"])
@@ -97,6 +105,7 @@ def update_contacts():
 
     return render_template('update-contact.html', phone=current_user.phone, email=current_user.email)
 
+
 @app.route('/update-information', methods=['POST'])
 def update_information():
 
@@ -115,6 +124,7 @@ def update_information():
     db.session.commit()
 
     return "Updated" #TODO
+
 
 @app.route('/categories')
 def all_categories():
@@ -225,7 +235,6 @@ def show_my_flashcard(flashcard_id):
     return render_template('view-flashcard.html', flashcard=flashcard)
 
 
-
 @app.route('/delete-flashcard', methods=['POST'])
 def delete_flashcard():
     """Deletes a flashcard"""
@@ -245,8 +254,36 @@ def delete_flashcard():
     # return render_template('delete-flashcard.html')
     return "deleted flashcard" # jsonify({'flashcard_id':flashcard_id})
 
+
+@app.route('/my-categories')
+def show_my_categories():
+    """Displays all categories created by user"""
+
+    # user_id = session['user_id']
+
+    my_categories = crud.get_all_categories()
+
+    return render_template('my-categories.html', categories=my_categories) #, user_id=user_id)
     
 
+@app.route('/delete-category', methods=['POST'])
+def delete_category():
+    """Deletes a category"""
+
+    # category_id = request.json["category_id"]
+    # print("*"*20)
+    # print(category_id) #does not print
+
+    category = request.form.get("category-to-delete")
+    category_id = crud.get_category_id(category)
+    # print(category_id)
+
+    category_to_delete = crud.get_category_by_id(category_id)
+
+    db.session.delete(category_to_delete)
+    db.session.commit()
+    
+    return redirect('/my-categories')
 
 
 @app.route('/new-flashcard')

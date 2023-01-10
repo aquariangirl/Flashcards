@@ -1,0 +1,61 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+   }
+   @font-face {
+    font-family: Montserrat;
+    src: url('Montserrat-Medium.ttf');
+   }
+   #activityTitle{
+    text-align:center;
+    font-size:38px;
+    font-family:Montserrat,Arial;
+    margin-top:50px;
+   }
+   #cardArea{
+    width:300px;
+    height:200px;
+    margin:auto;
+    margin-top:80px;
+    border:3px solid #ABB7B7;
+    border-radius:5px;
+    position:relative;
+    overflow:hidden;
+   }
+   .card{
+    width:300px;
+    height:200px;
+    position:absolute;
+    text-align:center;
+    line-height:200px;
+    font-size:45px;
+    color:#efefef;
+    font-family:Montserrat,Arial;
+    cursor:pointer;
+   }
+   #nextButton{
+    width:80px;
+    text-align:center;
+    font-size:20px;
+    padding:10px;
+    cursor:pointer;
+    color:#efefef;
+    margin:auto;
+    margin-top:30px;
+    background-color:#019875;
+    border: 2px solid #1E824C;
+    border-radius:5px;
+    font-family:Montserrat,Arial;
+   }
+   #nextButton:hover{
+    opacity:.6;
+   }
+   #finalMessage{
+    text-align:center;
+    font-size:30px;
+    margin-top:30px;
+    font-family:Montserrat,Arial;
+   }

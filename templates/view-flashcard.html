@@ -1,17 +1,25 @@
-{% extends 'base.html' %}
-{% block title %}Flashcards!{% endblock %}
+<!DOCTYPE html>
+ <head>
+  <link href="flashcard.css" rel="stylesheet" type="text/css"/>
+  <script src="jquery.min.js"></script>
+  <!-- <script src="flashcard.js"></script> -->
+ </head>
 
-{% block body %}
+ <body>
+    <div id="activityTitle">A single flashcard displays here.</div>
+    <div id="cardArea"></div>
+    <div id="buttonArea"></div>
+    </div>
 
-<h1>A single flashcard displays here.</h1>
     <section>
         <li>
             <h3>{{ flashcard.front_card }}<br>
                 {{ flashcard.back_card }}</h3>
         </li>
             <button name= "{{ flashcard.flashcard_id }}" onclick="deleteFlashcard(name)">Delete Flashcard</button> <br>
-            </p>    
     </section>
         
-       <script src="../static/view-flashcard.js"></script>
-{% endblock %}
+    <script src="../static/view-flashcard.js"></script>
+
+ </body>
+</html>

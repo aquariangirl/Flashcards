@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Flashcards!{% endblock %}
+
+{% block body %}
+<label for="category_label">Select a category to delete:</label>
+    <section>
+    <form action="/delete-category", method="POST">
+        <select name="category-to-delete" id="category-delete">
+            <li>{% for category in categories %}  
+                <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+            </li>{% endfor %}
+            <input type="submit" value="Delete"></input> 
+        </select>
+    </section>
+
+    <script src="../static/my-categories.js"></script>
+    
+{% endblock %}

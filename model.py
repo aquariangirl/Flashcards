@@ -12,10 +12,11 @@ class User(db.Model):
     user_id = db.Column(db.Integer, autoincrement= True, primary_key= True)
     username = db.Column(db.String(15), nullable= False, unique=True)
     password = db.Column(db.String(25), nullable= False)
-    email = db.Column(db.String(25), unique=True) #create an option to add/edit email and phone later if it is not already provided
+    email = db.Column(db.String(25), unique=True)
     phone = db.Column(db.String(20), unique=True)
 
     flashcards = db.relationship("Flashcard", back_populates="user")
+    # categories = db.relationship("Category", back_populates="user")
 
     def __repr__(self):
         """Display User info."""
@@ -53,13 +54,16 @@ class Category(db.Model):
                         autoincrement= True,
                         primary_key= True)
     category_name = db.Column(db.String(50))
+    # user_id = db.Column(db.Integer, 
+    #                     db.ForeignKey("users.user_id"))
 
     flashcards = db.relationship("Flashcard", back_populates="category")
+    # user = db.relationship("User", back_populates="categories")
 
-def __repr__(self):
-    """Display Category info."""
+    def __repr__(self):
+        """Display Category info."""
 
-    return f"<category_id = {self.user_id}, category_name = {self.category_name}>"
+        return f"<category_id = {self.user_id}, category_name = {self.category_name}>"
 
 
 
