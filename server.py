@@ -270,15 +270,12 @@ def show_my_categories():
 def delete_category():
     """Deletes a category"""
 
-    # category_id = request.json["category_id"]
-    # print("*"*20)
-    # print(category_id) #does not print
-
     category = request.form.get("category-to-delete")
     category_id = crud.get_category_id(category)
     # print(category_id)
 
     category_to_delete = crud.get_category_by_id(category_id)
+
 
     db.session.delete(category_to_delete)
     db.session.commit()
