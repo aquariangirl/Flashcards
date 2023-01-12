@@ -25,7 +25,7 @@ $(document).ready(function () {
     loadDB();
    
     function loadDB(){
-     $.getJSON("flashards.json", function(data) {
+     $.getJSON("flashcards.json", function(data) {
       for(i=0;i<data.questionlist.length;i++){
        qbank[i]=[];
        qbank[i][0]=data.questionlist[i].cardfront;

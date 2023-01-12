@@ -1,8 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Flashcards!{% endblock %}
+
+{% block body %}
+
 <!DOCTYPE html>
  <head>
-  <link href="flashcard.css" rel="stylesheet" type="text/css"/>
-  <script src="jquery.min.js"></script>
-  <!-- <script src="flashcard.js"></script> -->
+  <link href="css/flashcard.css" rel="stylesheet" type="text/css"/>
+
  </head>
 
  <body>
@@ -11,6 +15,7 @@
     <div id="buttonArea"></div>
     </div>
 
+    
     <section>
         <li>
             <h3>{{ flashcard.front_card }}<br>
@@ -23,3 +28,5 @@
 
  </body>
 </html>
+
+{% endblock %}
