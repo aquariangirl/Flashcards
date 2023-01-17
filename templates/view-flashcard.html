@@ -5,27 +5,28 @@
 
 <!DOCTYPE html>
  <head>
-  <link href="css/flashcard.css" rel="stylesheet" type="text/css"/>
-
+  <link href="../static/css/flashcard.css" rel="stylesheet" type="text/css"/>
  </head>
 
+ 
  <body>
-    <div id="activityTitle">A single flashcard displays here.</div>
-    <div id="cardArea"></div>
-    <div id="buttonArea"></div>
-    </div>
+    <div> A single flashcard displays here.</div>
+   
 
-    
-    <section>
-        <li>
-            <h3>{{ flashcard.front_card }}<br>
-                {{ flashcard.back_card }}</h3>
-        </li>
-            <button name= "{{ flashcard.flashcard_id }}" onclick="deleteFlashcard(name)">Delete Flashcard</button> <br>
-    </section>
-        
-    <script src="../static/view-flashcard.js"></script>
+    <button name= "{{ flashcard.flashcard_id }}" onclick="deleteFlashcard(name)">Delete Flashcard</button> <br>
 
+    <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h1 alt="Avatar" style="width:300px;height:300px;">{{ flashcard.front_card }}</h1>
+          </div>
+          <div class="flip-card-back">
+            <h1>{{ flashcard.back_card }}</h1>
+          </div>
+        </div>
+      </div>
+   
+    <script src="../static/view-flashcard.js" type="text/javascript"></script>
  </body>
 </html>
 
