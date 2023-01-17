@@ -2,15 +2,18 @@
 {% block title %}Flashcards!{% endblock %}
 
 {% block body %}
-  <h1>Welcome to Flashcards!</h1>
+  <h1>Create Flashcards!</h1>
 
-
-  <h2>Navigation</h2>
-  <ul class="navbar">>
-    <li><a href="/search">Search for flashcards by keywords.</a></li>
-    <li><a href="/user-profile">View your profile.</a></li>
+  <h3>Welcome to your interactive studying tool. This site has been <br>
+    created with students in mind to help reach studying goals. Create <br> 
+    an account to get started creating your personalized flashcards. </h3>
+  
+  <ul class="navbar">
+    <li><a href="/search">Search flashcards</a></li>
+    <li><a href="/user-profile">View my profile</a></li>
   </ul>
-
+  <br>
+  <br>
   <h2>Create an Account</h2>
   <form action="/users" method="POST">
     <p>
@@ -18,12 +21,6 @@
     </p>
     <p>
       Password <input type="password" name="password">
-    </p>
-    <p>
-      Email <input type="text" name="email">
-    </p>
-    <p>
-      Phone <input type="text" name="phone">
     </p>
 
     <p>
