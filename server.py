@@ -279,6 +279,7 @@ def delete_category():
 
     db.session.delete(category_to_delete)
     db.session.commit()
+    flash("Category Deleted!")
     
     return redirect('/my-categories')
 

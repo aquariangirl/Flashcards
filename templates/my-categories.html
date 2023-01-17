@@ -2,6 +2,13 @@
 {% block title %}Flashcards!{% endblock %}
 
 {% block body %}
+<head>
+    <link href="../static/css/flashcard.css" rel="stylesheet" type="text/css"/>
+    <form action="/user-profile">
+      <button class="button">My Profile</button>
+  </form> 
+  </head>
+<body>
 <label for="category_label">Select a category to delete:</label>
     <section>
     <form action="/delete-category", method="POST">
@@ -14,5 +21,5 @@
     </section>
 
     <script src="../static/my-categories.js"></script>
-    
+</body>    
 {% endblock %}

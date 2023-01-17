@@ -8,7 +8,11 @@
  </head>
  <body>
     
-<h1>Your Flashcards:</h1> 
+<h1>Your Flashcards:</h1> <br>
+<form>
+    <input type="button" value="Back" onclick="history.back()">
+  </form><br>
+
 <ul>
     {% for flashcard in flashcards %}
     

@@ -23,10 +23,14 @@
         </div>
       </div>
       <br>
+      
     <button name= "{{ flashcard.flashcard_id }}" onclick="deleteFlashcard(name)">Delete Flashcard</button> <br><br>
     <form>
       <input type="button" value="Back" onclick="history.back()">
-    </form>    
+    </form><br>
+    <form action="/user-profile">
+      <button class="button">My Profile</button>
+  </form> 
 
     <script src="../static/view-flashcard.js" type="text/javascript"></script>
  </body>
