@@ -43,7 +43,7 @@ class Flashcard(db.Model):
     def __repr__(self):
         """Display Flashcard info."""
 
-        return f"<flashcard_id = {self.user_id}, front_card = {self.front_card}>"
+        return f"<flashcard_id = {self.flashcard_id}, front_card = {self.front_card}, category_id = {self.category_id}>"
 
 
 class Category(db.Model):

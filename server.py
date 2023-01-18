@@ -4,6 +4,8 @@ from flask import (Flask, render_template, request, flash, session, redirect, js
 from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
+from passlib.hash import pbkdf2_sha256
+
 
 
 app = Flask(__name__)
@@ -16,8 +18,6 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
 
     return render_template('homepage.html')
-
-
 
 
 @app.route("/users", methods=["POST"])
@@ -41,6 +41,7 @@ def register_user():
 
     return redirect("/")
     # TODO add else statements if password is missing
+
 
 @app.route("/login")
 def login_page():
@@ -163,18 +164,36 @@ def create_category():
     return render_template('new-flashcard.html', category_choice=my_category)
 
 
+
 @app.route('/categories/<category_name>')
 def show_category_flashcards(category_name):
     """Displays all flashcards within a single category."""
 
-    category = crud.get_category_name(category_name)
+   
+    # categories = request.form.get("category-to-show")
+    # category_id = crud.get_flashcards_by_category(category_id)
+
+    category_name = request.form.get('category.category_name') # returns None TODO
+    # print(category_id)
+    print("*"*20)
+    category_id = crud.get_category_id(category_name)
+    print(category_id)
 
     flashcards = crud.get_flashcards_by_category(category_name) # edit to get all flashcards by catergory ?
-    # print("*"*20)
+    print(flashcards)
+    # category_id = flashcards.category_id
+    
+
+    category_to_delete = crud.get_category_by_id(category_id)
+    category_name = flashcards.category_name
+    # category = crud.get_category_name(category_id)
+    # print(category_name)
+    # print(category_id)
+
     for flashcard in flashcards:
         print(flashcard)
 
-    return render_template('flashcards-in-category.html', category_name=category, flashcards=flashcards)
+    return render_template('flashcards-in-category.html', category_name=category_name, flashcards=flashcards)
 
 
 @app.route('/categories/<category_name>/<flashcard_id>')
@@ -204,15 +223,19 @@ def create_flashcard():
         # print(front)
         # print(back)
         # print(category)
-        category_id = crud.get_category_id(category) 
-        # print(category_id)
+        category_id = crud.get_category_id(category)
+        print(category_id)
 
 
     flashcard = crud.create_flashcard(front_card=front, back_card=back, category_id=category_id, user_id=user)
     db.session.add(flashcard)
     db.session.commit()
-    
-    return redirect(f'/categories/{category}/{flashcard.flashcard_id}')
+
+    # print('successfully added flashcard ********')
+    # flashcard = crud.get_flashcard_by_id(flashcard_id)
+
+    return render_template('view-flashcard.html', flashcard=flashcard)
+    # return redirect(f'/categories/{category}/{flashcard.flashcard_id}')
 
 
 @app.route('/my-flashcards')
@@ -235,24 +258,24 @@ def show_my_flashcard(flashcard_id):
     return render_template('view-flashcard.html', flashcard=flashcard)
 
 
-@app.route('/delete-flashcard', methods=['POST'])
-def delete_flashcard():
-    """Deletes a flashcard"""
+# @app.route('/delete-flashcard', methods=['POST'])
+# def delete_flashcard():
+#     """Deletes a flashcard"""
 
-    flashcard_id = request.json["flashcard_id"]
-    # print("*"*20)
-    # print(flashcard_id)
+#     flashcard_id = request.json["flashcard_id"]
+#     # print("*"*20)
+#     # print(flashcard_id)
 
-    flashcard = crud.get_flashcard_by_id(flashcard_id)
+#     flashcard = crud.get_flashcard_by_id(flashcard_id)
 
 
-    db.session.delete(flashcard)
-    db.session.commit()
+#     db.session.delete(flashcard)
+#     db.session.commit()
     
-    # flash("Flashcard Deleted!")
-    # return "test"
-    # return render_template('delete-flashcard.html')
-    return "deleted flashcard" # jsonify({'flashcard_id':flashcard_id})
+#     # flash("Flashcard Deleted!")
+#     # return "test"
+#     # return render_template('delete-flashcard.html')
+#     return "deleted flashcard" # jsonify({'flashcard_id':flashcard_id})
 
 
 @app.route('/my-categories')
@@ -295,7 +318,6 @@ def new_flashcard():
     return render_template('new-flashcard.html', category_choice=category) #, category_id=category_id)
     
 
-    return redirect("/new-flashcard") #, categories=category_names) #after POST, redirect to ("/new-flashcard")
 
 
 @app.route("/search")

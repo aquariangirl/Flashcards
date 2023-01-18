@@ -10,17 +10,31 @@
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
         <style type="text/css">
           body {
-            padding-left: 18em;
+            padding-left: 22em;
             font-family: 'Lato';
             color: rgb(255, 255, 255);
             background-color: rgb(0, 0, 0)  }
           ul.navbar {
+            list-style-type: none;
+            padding: 0;
+            margin: 5;
             position: absolute;
-            top: 7em;
+            top: 6em;
             left: 1em;
-            width: 9em }
+            width: 15em }
           h1 {
               font-family: 'Oswald';}
+          ul.navbar li {
+            background: white;
+            margin: 0.5em 0;
+            padding: 0.3em;
+            border-left: 1em solid rgb(109, 92, 92) }
+  ul.navbar a {
+    text-decoration: none }
+  a:link {
+    color: blue }
+  a:visited {
+    color: purple }
         </style>
     {% block head %}{% endblock %}
   </head>

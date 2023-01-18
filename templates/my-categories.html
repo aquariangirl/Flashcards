@@ -5,10 +5,24 @@
 <head>
     <link href="../static/css/flashcard.css" rel="stylesheet" type="text/css"/>
     <form action="/user-profile">
-      <button class="button">My Profile</button>
-  </form> 
+      <button class="button">Return to Profile</button>
+  </form> <br>
   </head>
 <body>
+    <br>
+    <label for="category_label">View all Flashcards in this category:</label>
+    <section>
+    <form action="/categories">
+        <select name="flashcards-to-show" id="category-show">
+            <li>{% for category in categories %}  
+                <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+            </li>{% endfor %}
+            <input type="submit" value="Go"></input> 
+        </select>
+    </form>
+    </section>
+<br>
+<br>
 <label for="category_label">Select a category to delete:</label>
     <section>
     <form action="/delete-category", method="POST">
@@ -18,8 +32,10 @@
             </li>{% endfor %}
             <input type="submit" value="Delete"></input> 
         </select>
+    </form>
     </section>
 
     <script src="../static/my-categories.js"></script>
 </body>    
+
 {% endblock %}

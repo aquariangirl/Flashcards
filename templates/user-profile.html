@@ -1,19 +1,39 @@
 {% extends 'base.html' %}
+
 {% block title %}Flashcards!{% endblock %}
 
 {% block body %}
-<br>
-<br>
-<br>
-<h1>My Profile</h1>
-<h3>Here you can view your own flashcards and make other changes.</h3>
 
-<ul class="navbar">
-<h2>Navigation</h2>
-    <li><a href="/select-category">New Flashcard</a></li><br>
+<br>
+<br>
+<br>
+<head>
+  <style>
+    a:link, a:visited {
+      background-color: #ffffff;
+      color: rgb(0, 0, 0);
+      padding: 5px 5px;
+      text-align: left;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    a:hover, a:active {
+      color: rgb(143, 100, 100);
+    }
+    </style>
+  </head>
+  <body>
+  <h1>My Profile</h1>
+  <h3>Here you can create, view, and make other changes to your flashcards.</h3>
+
+  <ul class="navbar">
+    <li><a href="/select-category">New Flashcard</a></li>
     <li><a href="/my-flashcards">My Flashcards</a></li>
-    <li><a href="/my-categories">Delete Category</a></li>
+    <li><a href="/my-categories">My Categories</a></li>
     <li><a href="/search">Search Flashcards</a></li> <br>
-    <li><a href="/logout">Log Out</a></li>
+    <li><a href="/logout">Log Out</a></ul>
   </ul>
+
+  </body>
 {% endblock %}
