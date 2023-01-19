@@ -10,3 +10,5 @@ SQLAlchemy==1.4.18
 Werkzeug==2.0.1
 Flask-DebugToolbar==0.11.0
 django==4.1.4
+passlib==1.7.4
+pathlib==1.0.1

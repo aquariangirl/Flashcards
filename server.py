@@ -4,8 +4,9 @@ from flask import (Flask, render_template, request, flash, session, redirect, js
 from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
-from passlib.hash import pbkdf2_sha256
 
+# import pathlib 
+# from passlib.hash import pbkdf2_sha256
 
 
 app = Flask(__name__)
@@ -31,13 +32,16 @@ def register_user():
 
     user = crud.get_user_by_username(username)
 
-    if user:
-        flash("Cannot create an account with that username. Try again.")
-    else:
-        user = crud.create_user(username, password, email, phone)
-        db.session.add(user)
-        db.session.commit()
-        flash("Account created! Please log in.")
+    # if user:
+    #     flash("Cannot create an account with that username. Try again.")
+    # elif user == None:
+    #     user = crud.create_hash_account(username, password)
+    # else:
+    #     user = crud.create_user(username, password, email, phone)
+    #     db.session.add(user)
+    #     db.session.commit()
+    #     flash("Account created! Please log in.")
+    
 
     return redirect("/")
     # TODO add else statements if password is missing
@@ -165,30 +169,20 @@ def create_category():
 
 
 
-@app.route('/categories/<category_name>')
-def show_category_flashcards(category_name):
+@app.route('/categories', methods=['POST'])
+def show_category_flashcards():
     """Displays all flashcards within a single category."""
 
-   
-    # categories = request.form.get("category-to-show")
-    # category_id = crud.get_flashcards_by_category(category_id)
-
-    category_name = request.form.get('category.category_name') # returns None TODO
-    # print(category_id)
+    category_name = request.form.get('flashcards-to-show') # returns None TODO
+    print(category_name)
     print("*"*20)
     category_id = crud.get_category_id(category_name)
-    print(category_id)
+    # print(category_id)
 
-    flashcards = crud.get_flashcards_by_category(category_name) # edit to get all flashcards by catergory ?
+    flashcards = crud.get_flashcards_by_category(category_id) # edit to get all flashcards by catergory ?
     print(flashcards)
     # category_id = flashcards.category_id
     
-
-    category_to_delete = crud.get_category_by_id(category_id)
-    category_name = flashcards.category_name
-    # category = crud.get_category_name(category_id)
-    # print(category_name)
-    # print(category_id)
 
     for flashcard in flashcards:
         print(flashcard)
@@ -235,7 +229,6 @@ def create_flashcard():
     # flashcard = crud.get_flashcard_by_id(flashcard_id)
 
     return render_template('view-flashcard.html', flashcard=flashcard)
-    # return redirect(f'/categories/{category}/{flashcard.flashcard_id}')
 
 
 @app.route('/my-flashcards')
@@ -258,31 +251,10 @@ def show_my_flashcard(flashcard_id):
     return render_template('view-flashcard.html', flashcard=flashcard)
 
 
-# @app.route('/delete-flashcard', methods=['POST'])
-# def delete_flashcard():
-#     """Deletes a flashcard"""
-
-#     flashcard_id = request.json["flashcard_id"]
-#     # print("*"*20)
-#     # print(flashcard_id)
-
-#     flashcard = crud.get_flashcard_by_id(flashcard_id)
-
-
-#     db.session.delete(flashcard)
-#     db.session.commit()
-    
-#     # flash("Flashcard Deleted!")
-#     # return "test"
-#     # return render_template('delete-flashcard.html')
-#     return "deleted flashcard" # jsonify({'flashcard_id':flashcard_id})
-
 
 @app.route('/my-categories')
 def show_my_categories():
     """Displays all categories created by user"""
-
-    # user_id = session['user_id']
 
     my_categories = crud.get_all_categories()
 
@@ -339,8 +311,6 @@ def flashcard_result():
 
 
     return render_template("flashcardresult.html", results=results)
-    # session.commit()
-
 
 
 if __name__ == "__main__":

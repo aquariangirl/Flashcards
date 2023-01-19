@@ -1,13 +1,27 @@
 """CRUD Operations"""
 
 from model import db, User, Category, Flashcard, connect_to_db
+# from passlib.hash import pbkdf2_sha256
+
 
 def create_user(username, password, email, phone):
     """Create and return a new user."""
 
+    # hashed_password = pbkdf2_sha256.hash(password)
     user = User(username=username, password=password, email=email, phone=phone)
-
+    #change password=hash_password
     return user
+
+
+# def create_hash_account(email, password):
+#     """Check if hashed pw in db matches entered password"""
+
+#     user = User.query.filter(User.email == email).first()
+
+#     if pbkdf2_sha256.verify(password, user.password):
+#         return user
+#     else:
+#         return False 
 
 
 def get_user_by_username(username):

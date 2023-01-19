@@ -3,15 +3,33 @@
 
 {% block body %}
 
-<h1>Here are all the flashcards in category {{ category_name }}</h1> 
-<ul>
+<head>
+    <link href="../static/css/flashcard.css" rel="stylesheet" type="text/css"/>
+    <form>
+       <input type="button" value="Back" onclick="history.back()">
+    </form><br>
+   </head>
+<body>
+
+ <h1>All flashcards in {{ category_name }}</h1> 
+    <ul>
     
     {% for flashcard in flashcards %}
     <a href="/categories/{{ category_name }}/{{ flashcard.flashcard_id }}">
-    <li>{{ flashcard.front_card }} <br>
-        {{ flashcard.back_card }}
-    </li> <br> <br>
+
+        <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                  <h1 alt="Avatar" style="width:300px;height:300px;">{{ flashcard.front_card }}</h1>
+                </div>
+                <div class="flip-card-back">
+                  <h3>{{ flashcard.back_card }}</h3>
+              </div>
+            </div>
+          </div>
+        
     </a>
     {% endfor %}  
-</ul>
+    </ul>
+</body>
 {% endblock %}
