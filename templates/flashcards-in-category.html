@@ -15,7 +15,7 @@
     <ul>
     
     {% for flashcard in flashcards %}
-    <a href="/categories/{{ category_name }}/{{ flashcard.flashcard_id }}">
+    <a href="/{{ category_name }}/{{ flashcard.flashcard_id }}">
 
         <div class="flip-card">
             <div class="flip-card-inner">
@@ -31,5 +31,6 @@
     </a>
     {% endfor %}  
     </ul>
+    <script src="../static/my-categories.js"></script>
 </body>
 {% endblock %}

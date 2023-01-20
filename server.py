@@ -169,7 +169,7 @@ def create_category():
 
 
 
-@app.route('/categories', methods=['POST'])
+@app.route('/category-details', methods=['POST'])
 def show_category_flashcards():
     """Displays all flashcards within a single category."""
 
@@ -190,16 +190,15 @@ def show_category_flashcards():
     return render_template('flashcards-in-category.html', category_name=category_name, flashcards=flashcards)
 
 
-@app.route('/categories/<category_name>/<flashcard_id>')
+@app.route('/<category_name>/<flashcard_id>')
 def show_flashcard(category_name, flashcard_id):
     """Displays a single flashcard"""
 
-    flashcards = crud.get_all_flashcards() #this works
-    flashcard = crud.get_flashcard_by_id(flashcard_id) #this works
+    flashcards = crud.get_all_flashcards() 
+    flashcard = crud.get_flashcard_by_id(flashcard_id)
     # print(flashcards)
 
     categories = crud.get_all_categories()
-
 
     return render_template('view-flashcard.html', flashcard=flashcard, categories=categories)
 
@@ -213,10 +212,7 @@ def create_flashcard():
         back = request.form.get('back_card')
         category = request.form.get('category_name')
         user = session['user_id']
-        # print(user)
-        # print(front)
-        # print(back)
-        # print(category)
+       
         category_id = crud.get_category_id(category)
         print(category_id)
 
@@ -290,6 +286,22 @@ def new_flashcard():
     return render_template('new-flashcard.html', category_choice=category) #, category_id=category_id)
     
 
+@app.route('/delete-flashcard', methods=['POST'])
+def delete_flashcard():
+    """Deletes a flashcard"""
+
+    flashcard_id = request.json["flashcard_id"]
+    # print("*"*20)
+    # print(flashcard_id)
+
+    flashcard = crud.get_flashcard_by_id(flashcard_id)
+
+
+    db.session.delete(flashcard)
+    db.session.commit()
+
+    flash("Flashcard Deleted!")
+    return "deleted flashcard" 
 
 
 @app.route("/search")

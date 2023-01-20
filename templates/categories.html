@@ -2,6 +2,12 @@
 {% block title %}All of the Categories{% endblock %}
 
 {% block body %}
+<head>
+    <link href="../static/css/flashcard.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
 
 <h1>Here are all of the categories of flashcards. Select one to view its flashcards.</h1> 
 <ul>
@@ -9,4 +15,8 @@
     <li><a href="/categories/{{ category.category_id }}">{{ category.category_name }}></a></li>
     {% endfor %}
 </ul>
+    <script src="../static/my-categories.js"></script>
+</body>
 {% endblock %}
+
+{{ # I just added head and script }}

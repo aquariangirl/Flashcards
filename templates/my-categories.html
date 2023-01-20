@@ -12,7 +12,7 @@
     <br>
     <label for="category_label">View all Flashcards in this category:</label>
     <section>
-    <form action="/categories" method="POST">
+    <form action="/category-details" method="POST">
         <select name="flashcards-to-show" id="category-show">
             <li>{% for category in categories %}  
                 <option value="{{ category.category_name }}">{{ category.category_name }}</option>
