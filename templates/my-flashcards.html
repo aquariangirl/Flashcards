@@ -12,11 +12,12 @@
 <body>
  <h1>My Flashcards:</h1> <br>
 
- <ul>
-    {% for flashcard in flashcards %}
-    <ul><a href="/my-flashcards/{{ flashcard.flashcard_id }}">
 
-        <div class="flip-card">
+  <table>
+    {% for flashcard in flashcards %}
+    <tr>
+      <div class="flip-card">
+          <a href="/my-flashcards/{{ flashcard.flashcard_id }}">
           <div class="flip-card-inner">
             <div class="flip-card-front">
                 <h1 alt="Avatar" style="width:300px;height:300px;">{{ flashcard.front_card }}</h1>
@@ -25,13 +26,16 @@
                 <h3>{{ flashcard.back_card }}</h3>
             </div>
           </div>
-        </div>
-    </a></ul>
+        </a>
+      </div>
+    </a>
     <br>
+    </tr>
     {% endfor %} 
+    </table>
     
     <script src="../static/view-flashcard.js" type="text/javascript"></script>
-  </ul>
+
  </body>
    
 

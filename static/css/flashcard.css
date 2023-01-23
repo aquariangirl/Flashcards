@@ -51,3 +51,6 @@ ul {
     color: white;
     transform: rotateY(180deg);
   }
+  h3, .h3 {
+    font-size:20px;
+ }

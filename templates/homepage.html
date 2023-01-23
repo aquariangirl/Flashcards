@@ -2,16 +2,36 @@
 {% block title %}Flashcards!{% endblock %}
 
 {% block body %}
+<head>
+  <style>
+  div.description {
+    max-width: 700px;
+    margin: left;
+  }
+  </style>
+  <br>
   <h1>Create Flashcards!</h1>
-
-  <h3>Welcome to your interactive studying tool. This site has been <br>
-    created with students in mind to help reach studying goals. Create <br> 
+</head>
+<body>
+  <br><br><br><br>
+  <div class="description">
+  <h3>
+    <p style="text-align:left"> Welcome to your interactive studying tool. This site has been
+    created with students in mind to help reach studying goals. Create 
     an account to get started making your personalized flashcards. </h3>
-  
-  <ul class="navbar">
-  </ul>
-  <br>
-  <br>
+    </p>
+  </div>
+
+
+  {# NAV BAR #}
+  <div class="navbar">
+    {# <background-img src="../static/homepage.jpg" alt="study spread"> #}
+ 
+    </div>
+
+
+  <div>
+  <br><br>
   <h2>Create an Account</h2>
   <form action="/users" method="POST">
     <p>
@@ -27,6 +47,6 @@
   </form>
 
 Already have an account? <a href="/login">Login</a> 
-  
-
+  </div>
+</body>
 {% endblock %}

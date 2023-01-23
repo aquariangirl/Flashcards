@@ -12,12 +12,12 @@
 <body>
 
  <h1>All flashcards in {{ category_name }}</h1> 
-    <ul>
     
+  <table>
     {% for flashcard in flashcards %}
-    <a href="/{{ category_name }}/{{ flashcard.flashcard_id }}">
-
-        <div class="flip-card">
+      <tr>
+        <div class="flip-card">    
+          <a href="/{{ category_name }}/{{ flashcard.flashcard_id }}">
             <div class="flip-card-inner">
               <div class="flip-card-front">
                   <h1 alt="Avatar" style="width:300px;height:300px;">{{ flashcard.front_card }}</h1>
@@ -26,11 +26,11 @@
                   <h3>{{ flashcard.back_card }}</h3>
               </div>
             </div>
-          </div>
-        
-    </a>
+          </a>
+        </div>
+    </tr>
     {% endfor %}  
-    </ul>
+    </table>
     <script src="../static/my-categories.js"></script>
 </body>
 {% endblock %}

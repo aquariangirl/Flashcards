@@ -2,9 +2,21 @@
 {% block title %}Flashcards!{% endblock %}
 
 {% block body %}
-<br><br>
+<br><br><br><br>
 <h2>Now enter your flashcard details:</h2>
 
+<style>
+#front_card
+{
+    min-height:100px;
+    font-size:14pt;
+}
+#back_card
+{
+    min-height:200px;
+    font-size:14pt;
+}
+</style>
 <form action="/create-flashcard" method='POST'>
     <label for="category_name">Category:</label>
     <input type="text" id="category" name="category_name" value="{{ category_choice }}" readonly><br><br>
