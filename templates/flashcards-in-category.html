@@ -5,14 +5,19 @@
 
 <head>
     <link href="../static/css/flashcard.css" rel="stylesheet" type="text/css"/>
+    <link href="../static/css/button.css" rel="stylesheet" type="text/css"/>
+
     <form>
-       <input type="button" value="Back" onclick="history.back()">
-    </form><br>
+      <input type="button" value="Back" class="button" role="button" onclick="history.back()">
+    
+      <input type="button" value="Return to Profile" class="button"  onClick="location.href = '/user-profile';">
+    </form>
+    
    </head>
 <body>
-
- <h1>All flashcards in {{ category_name }}</h1> 
-    
+  <br><br><br>
+ <h1>All flashcards in {{ category_name }}:</h1> 
+ <br><br><br>
   <table>
     {% for flashcard in flashcards %}
       <tr>

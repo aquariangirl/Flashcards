@@ -6,9 +6,12 @@
     <link href="../static/css/flashcard.css" rel="stylesheet" type="text/css"/>
     <link href="../static/css/button.css" rel="stylesheet" type="text/css"/>
 
-    <form action="/user-profile">
-      <button class="button" class="button" role="button">Return to Profile</button>
-  </form> <br>
+    <form>
+        <input type="button" value="Back" class="button" role="button" onclick="history.back()">
+      
+        <input type="button" value="Return to Profile" class="button"  onClick="location.href = '/user-profile';">
+      </form>
+      
   </head>
 <body>
     <br>
