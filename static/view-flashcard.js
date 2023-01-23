@@ -14,14 +14,9 @@ function deleteFlashcard(flashcard_id){
         })
         
         window.location.replace('/my-flashcards');
-        console.log("[KS]");
+        // console.log("[KS]");
     } 
     form.addEventListener('submit', handleForm);
     }
-    
-    // .then(response => console.log("[KS] response: " + response.text()))
-    // .then(data => console.log("[KS] data: " + data))
-    // 
-
 
 
