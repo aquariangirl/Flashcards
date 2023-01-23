@@ -7,7 +7,7 @@
     <link href="../static/css/button.css" rel="stylesheet" type="text/css"/>
 
     <form action="/user-profile">
-      <button class="button">Return to Profile</button>
+      <button class="button" class="button" role="button">Return to Profile</button>
   </form> <br>
   </head>
 <body>
@@ -19,7 +19,7 @@
             <li>{% for category in categories %}  
                 <option value="{{ category.category_name }}">{{ category.category_name }}</option>
             </li>{% endfor %}
-            <input type="submit" value="Go"></input> 
+            <input type="submit" class="button" role="button" value="Go"></input> 
         </select>
     </form>
     </section>

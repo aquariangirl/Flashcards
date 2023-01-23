@@ -2,8 +2,11 @@
 {% block title %}Flashcards!{% endblock %}
 
 {% block body %}
+<head>
+    <link href="../static/css/button.css" rel="stylesheet" type="text/css"/>
+</head>
 <form>
-    <input type="button" value="Back" onclick="history.back()">
+    <input type="button" value="Back" class="button" role="button" onclick="history.back()">
 </form><br><br><br>
  <h2>First, choose the category for your flashcard.</h2>
 <body>
@@ -14,7 +17,7 @@
                 {% for category in categories %}  
                     <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                 {% endfor %}
-                <input type="submit"></input>
+                <input type="submit" class="button" role="button"></input>
     </form>
     <form action="/create-category", method="POST">
         <label for="new-category"></label>
@@ -22,7 +25,7 @@
                 <label for="new-category">...Or make a new category:</label> <br>
                 <input type="text" id="new-category" name="new-category">
                 
-        <input type="submit"></input>
+        <input type="submit" class="button" role="button"></input>
     </form>
     </p>
 </body>

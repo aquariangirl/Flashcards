@@ -5,12 +5,14 @@
 <!DOCTYPE html>
  <head>
   <link href="../static/css/flashcard.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/button.css" rel="stylesheet" type="text/css"/>
+ 
   <form>
-    <input type="button" value="Search Again" onclick="history.back()">
-  </form><br>
-  <form action="/user-profile">
-    <button class="button">My Profile</button>
-</form> 
+    <input type="button" value="Search Again" class="button" role="button" onclick="history.back()">
+  
+    <input type="button" value="Return to Profile" class="button"  onClick="location.href = '/user-profile';">
+  </form>
+  
 </head>
  <body>
     <br><br>
@@ -24,7 +26,7 @@
                   <a href="/flashcardresult/{{ result.flashcard_id }}">
                     <div class="flip-card-inner">
                       <div class="flip-card-front">
-                        <h1 alt="Avatar" style="width:300px;height:300px;">{{ result.front_card }}</h1>
+                        <h1 alt="Avatar" style="width:300px;height:200px;">{{ result.front_card }}</h1>
                       </div>
                       <div class="flip-card-back">
                         <h3>{{ result.back_card }}</h3>

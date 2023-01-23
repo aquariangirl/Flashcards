@@ -2,6 +2,9 @@
 {% block title %}Flashcards!{% endblock %}
 
 {% block body %}
+<head>
+  <link href="../static/css/button.css" rel="stylesheet" type="text/css"/>
+</head>
 <br><br><br><br><br><br><br><br>
 <h2>Login</h2>
   <form action="/login" method="POST">
@@ -14,7 +17,7 @@
     </p>
 
     <p>
-      <input type="submit">
+      <input type="submit" class="button" role="button">
     </p>
   </form>
 
