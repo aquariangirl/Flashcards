@@ -4,6 +4,8 @@
 {% block body %}
 <head>
     <link href="../static/css/flashcard.css" rel="stylesheet" type="text/css"/>
+    <link href="../static/css/button.css" rel="stylesheet" type="text/css"/>
+
     <form action="/user-profile">
       <button class="button">Return to Profile</button>
   </form> <br>
@@ -30,7 +32,7 @@
             <li>{% for category in categories %}  
                 <option value="{{ category.category_name }}">{{ category.category_name }}</option>
             </li>{% endfor %}
-            <input type="submit" value="Delete"></input> 
+            <input type="submit" value="Delete" class="button" role="button"></input> 
         </select>
     </form>
     </section>

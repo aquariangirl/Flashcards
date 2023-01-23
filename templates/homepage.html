@@ -3,18 +3,36 @@
 
 {% block body %}
 <head>
+  <link href="../static/css/button.css" rel="stylesheet" type="text/css"/>
+
   <style>
   div.description {
     max-width: 700px;
     margin: left;
   }
+  
+  div.navbar {
+    list-style-type: none;
+    padding: 0;
+    margin: 5;
+    position: absolute;
+    top: 0em;
+    left: 0em;
+    width: 15em }
+    h1 {
+      font-family: 'Oswald';
+    }
+    
+
   </style>
-  <br>
+  <br><br><br>
   <h1>Create Flashcards!</h1>
 </head>
 <body>
-  <br><br><br><br>
+  
+  
   <div class="description">
+  <br><br>
   <h3>
     <p style="text-align:left"> Welcome to your interactive studying tool. This site has been
     created with students in mind to help reach studying goals. Create 
@@ -25,12 +43,13 @@
 
   {# NAV BAR #}
   <div class="navbar">
-   <background-img src="../static/homepage.jpg" alt="study spread">
- 
-    </div>
+    <img src="../static/homepage.jpg" alt="study spread">
+  </div>
 
+  
 
-  <div>
+  
+  <div class="login">
   <br><br>
   <h2>Create an Account</h2>
   <form action="/users" method="POST">
@@ -40,13 +59,11 @@
     <p>
       Password <input type="password" name="password">
     </p>
-
-    <p>
-      <input type="submit">
+      <input type="submit" class="button" role="button">
     </p>
   </form>
 
-Already have an account? <a href="/login">Login</a> 
+Already have an account?<a href="/login">Login</a> 
   </div>
 </body>
 {% endblock %}

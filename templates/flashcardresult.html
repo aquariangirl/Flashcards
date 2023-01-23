@@ -21,6 +21,7 @@
             <tr>
 
                 <div class="flip-card">
+                  <a href="/flashcardresult/{{ result.flashcard_id }}">
                     <div class="flip-card-inner">
                       <div class="flip-card-front">
                         <h1 alt="Avatar" style="width:300px;height:300px;">{{ result.front_card }}</h1>
@@ -30,6 +31,7 @@
                       </div>
                     </div>
                 </div>
+              </a>
             </tr> <br>
             {% endfor %}
             

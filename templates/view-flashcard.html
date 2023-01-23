@@ -5,14 +5,14 @@
 
  <head>
   <link href="../static/css/flashcard.css" rel="stylesheet" type="text/css"/>
-  <div class=“btn-container”>
+  <link href="../static/css/button.css" rel="stylesheet" type="text/css"/>
+
     <form>
-      <input type="button" value="Back" onclick="history.back()">
+      <input type="button" value="Back" class="button" role="button" onclick="history.back()">
     </form><br>
     <form action="/user-profile">
       <button class="button">My Profile</button> 
     </form>  
-    </div>
   
 </head>
 
@@ -34,9 +34,11 @@
       </div>
       <br>
     <div>   
-    </section>
-    <button name= "{{ flashcard.flashcard_id }}" onclick="deleteFlashcard(name)">Delete Flashcard</button> <br><br>
-    </div>
+    </section><br>
+   <form>
+    <button name= "{{ flashcard.flashcard_id }}" onclick="deleteFlashcard(name)" class="button" role="button">Delete Flashcard</button> <br><br>
+    </form> 
+  </div>
 
     <script src="../static/view-flashcard.js" type="text/javascript"></script>
  </body>

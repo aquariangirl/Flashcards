@@ -12,8 +12,8 @@ class User(db.Model):
     user_id = db.Column(db.Integer, autoincrement= True, primary_key= True)
     username = db.Column(db.String(15), nullable= False, unique=True)
     password = db.Column(db.String(25), nullable= False)
-    email = db.Column(db.String(25), unique=True)
-    phone = db.Column(db.String(20), unique=True)
+    # email = db.Column(db.String(25), unique=True)
+    # phone = db.Column(db.String(20), unique=True)
 
     flashcards = db.relationship("Flashcard", back_populates="user")
     # categories = db.relationship("Category", back_populates="user")

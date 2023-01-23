@@ -4,11 +4,11 @@ from model import db, User, Category, Flashcard, connect_to_db
 # from passlib.hash import pbkdf2_sha256
 
 
-def create_user(username, password, email, phone):
+def create_user(username, password): #, email, phone): #TODO flashcards 2.0
     """Create and return a new user."""
 
     # hashed_password = pbkdf2_sha256.hash(password)
-    user = User(username=username, password=password, email=email, phone=phone)
+    user = User(username=username, password=password) #, email=email, phone=phone) TODO flashcards 2.0
     #change password=hash_password
     return user
 

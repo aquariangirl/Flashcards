@@ -27,24 +27,22 @@ def register_user():
 
     username = request.form.get("username")
     password = request.form.get("password")
-    email = request.form.get("email")
-    phone = request.form.get("phone")
+    # email = request.form.get("email")
+    # phone = request.form.get("phone")
 
     user = crud.get_user_by_username(username)
 
-    # if user:
-    #     flash("Cannot create an account with that username. Try again.")
-    # elif user == None:
-    #     user = crud.create_hash_account(username, password)
-    # else:
-    #     user = crud.create_user(username, password, email, phone)
-    #     db.session.add(user)
-    #     db.session.commit()
-    #     flash("Account created! Please log in.")
+    if user:
+        flash("Cannot create an account with that username. Try again.")
+    elif user == None:
+        user = crud.create_user(username, password)
+    else:
+        user = crud.create_user(username, password) #, email, phone) #TODO flashcards 2.0
+        db.session.add(user)
+        db.session.commit()
+        flash("Account created! Please log in.")
     
-
     return redirect("/")
-    # TODO add else statements if password is missing
 
 
 @app.route("/login")
@@ -320,7 +318,6 @@ def flashcard_result():
         #     list1.append(i.keyword)
     print("*"*20)
     print(results)
-
 
     return render_template("flashcardresult.html", results=results)
 

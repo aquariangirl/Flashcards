@@ -17,9 +17,16 @@
       text-decoration: none;
       display: inline-block;
     }
-    
-    a:hover, a:active {
-      color: rgb(143, 100, 100);
+
+    .user_link li {
+     transition: transform .2s;
+     margin: 0 auto;
+    }
+
+    .user_link li:hover {
+     -ms-transform: scale(1.1); /* IE 9 */
+     -webkit-transform: scale(1.1); /* Safari 3-8 */
+     transform: scale(1.1); 
     }
     </style>
   </head>
@@ -27,13 +34,19 @@
   <h1>My Profile</h1>
   <h3>Here you can create, view, and make other changes to your flashcards.</h3>
 
-  <div class="navbar">
+<div class="navbar_user">
+    <div class="user_link">
     <li><a href="/select-category">New Flashcard</a></li>
-    <li><a href="/my-flashcards">My Flashcards</a></li>
+    <li><a href="/my-flashcards">My Flashcards</a></li> 
     <li><a href="/my-categories">My Categories</a></li>
     <li><a href="/search">Search Flashcards</a></li> <br>
     <li><a href="/logout">Log Out</a></ul>
     </div>
+</div>
+  
+
+
+  
 
   </body>
 {% endblock %}

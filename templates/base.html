@@ -12,12 +12,25 @@
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
         <style type="text/css">
+          .button {
+            background-color: #ffffff;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+          }
           body {
             padding-left: 22em;
             font-family: 'Lato';
             color: rgb(255, 255, 255);
-            background-color: rgb(0, 0, 0)  }
-          div.navbar {
+            background-color: rgb(0, 0, 0)  
+          }
+          div.navbar_user {
             list-style-type: none;
             padding: 0;
             margin: 5;
@@ -27,12 +40,14 @@
             width: 15em }
           h1 {
               font-family: 'Oswald';}
-          div.navbar li {
+          div.navbar_user li {
             background: white;
             margin: 0.5em 0;
             padding: 0.3em;
             border-left: 1em solid rgb(109, 92, 92) }
   ul.navbar a {
+    text-decoration: none }
+    ul.navbar_user a {
     text-decoration: none }
   a:link {
     color: blue }
@@ -53,8 +68,9 @@
       <div class="col">
     </div>
     <div class="row">
-
     </div>
+
+
     {% for msg in get_flashed_messages() %}
     <p class="flash-msg">
       {{ msg }}
