@@ -299,7 +299,7 @@ def delete_flashcard():
     db.session.commit()
 
     flash("Flashcard Deleted!")
-    return "deleted flashcard" 
+    return render_template("search.html")
 
 
 @app.route("/search")

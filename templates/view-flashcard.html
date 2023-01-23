@@ -7,11 +7,12 @@
   <link href="../static/css/flashcard.css" rel="stylesheet" type="text/css"/>
   <link href="../static/css/button.css" rel="stylesheet" type="text/css"/>
 
+  
     <form>
       <input type="button" value="Back" class="button" role="button" onclick="history.back()">
-    </form><br>
+    </form>
     <form action="/user-profile">
-      <button class="button">My Profile</button> 
+      <button class="button" role="button">My Profile</button> 
     </form>  
   
 </head>
@@ -25,20 +26,22 @@
     <div class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front">
-            <h1 alt="Avatar" style="width:300px;height:300px;">{{ flashcard.front_card }}</h1>
+            <h1 alt="Avatar" style="width:300px;height:200px;">{{ flashcard.front_card }}</h1>
           </div>
+
           <div class="flip-card-back">
             <h3>{{ flashcard.back_card }}</h3>
           </div>
+
         </div>
       </div>
       <br>
     <div>   
-    </section><br>
-   <form>
-    <button name= "{{ flashcard.flashcard_id }}" onclick="deleteFlashcard(name)" class="button" role="button">Delete Flashcard</button> <br><br>
-    </form> 
-  </div>
+  </section><br>
+   <form id="del">
+    <button name= "{{ flashcard.flashcard_id }}" onclick="deleteFlashcard(name)" type="submit" class="button" role="button">Delete Flashcard</button> <br><br>
+    </form>  
+
 
     <script src="../static/view-flashcard.js" type="text/javascript"></script>
  </body>
