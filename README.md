@@ -10,7 +10,7 @@ Create Flashcards is a web application that allows users to create a profile, cu
 🗃 Start the server with command:  python3 server.py
 🗃 Enter http://localhost:5000 into your browser
 
-##Technical Stack
+#Technical Stack
 🗃 Python
 🗃 Javascript
 🗃 HTML 
