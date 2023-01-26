@@ -34,5 +34,6 @@ Create Flashcards is a web application that allows users to create a profile, cu
 - Deployment
 
 ## 🗃 Special Thanks 🗃
-Thank you Kasia, Kat and Adam for offering mentorship. Thank you to my cohort mates and the entire HackBright team for your support.
+Thank you Kasia, Kat and Adam for offering mentorship. Thank you to my cohort mates and the entire HackBright team for your encouragement. Thank you Elliott for your loving support.
+Dedicated to Kai, good luck in Vet School!
 
